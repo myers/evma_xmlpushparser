@@ -316,7 +316,7 @@ static VALUE t_post_init (VALUE self)
 	if (!pp)
 		throw std::runtime_error ("no xml push-parser object");
 
-	rb_ivar_set (self, rb_intern ("@xml__push__parser__object"), INT2NUM ((long)pp));
+	rb_ivar_set (self, rb_intern ("@xml__push__parser__object"), LONG2NUM ((long)pp));
 	return Qnil;
 }
 
@@ -327,7 +327,7 @@ t_receive_data
 static VALUE t_receive_data (VALUE self, VALUE data)
 {
 	int length = NUM2INT (rb_funcall (data, rb_intern ("length"), 0));
-	RubyXmlPushParser_t *pp = (RubyXmlPushParser_t*)(NUM2INT (rb_ivar_get (self, rb_intern ("@xml__push__parser__object"))));
+	RubyXmlPushParser_t *pp = (RubyXmlPushParser_t*)(NUM2LONG (rb_ivar_get (self, rb_intern ("@xml__push__parser__object"))));
 	if (!pp)
 		throw std::runtime_error ("bad push-parser object");
 	pp->ConsumeData (StringValuePtr (data), length);
@@ -341,7 +341,7 @@ t_unbind
 
 static VALUE t_unbind (VALUE self)
 {
-	RubyXmlPushParser_t *pp = (RubyXmlPushParser_t*)(NUM2INT (rb_ivar_get (self, rb_intern ("@xml__push__parser__object"))));
+	RubyXmlPushParser_t *pp = (RubyXmlPushParser_t*)(NUM2LONG (rb_ivar_get (self, rb_intern ("@xml__push__parser__object"))));
 	if (!pp)
 		throw std::runtime_error ("no xml push-parser object");
 	pp->Close();
@@ -355,7 +355,7 @@ t_reset_parser
 
 static VALUE t_reset_parser (VALUE self)
 {
-	RubyXmlPushParser_t *pp = (RubyXmlPushParser_t*)(NUM2INT (rb_ivar_get (self, rb_intern ("@xml__push__parser__object"))));
+	RubyXmlPushParser_t *pp = (RubyXmlPushParser_t*)(NUM2LONG (rb_ivar_get (self, rb_intern ("@xml__push__parser__object"))));
 	if (!pp)
 		throw std::runtime_error ("no xml push-parser object");
 	pp->ScheduleReset();
