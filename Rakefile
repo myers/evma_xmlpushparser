@@ -56,9 +56,9 @@ def run_test_package test, filename_array
   runner = Test::Unit::UI::Console::TestRunner
 
   $LOAD_PATH.unshift('test')
-  $stderr.puts "Checking for test cases:" if test.verbose
+  #$stderr.puts "Checking for test cases:" if test.verbose
   filename_array.each do |testcase|
-    $stderr.puts "\t#{testcase}" if test.verbose
+    #$stderr.puts "\t#{testcase}" if test.verbose
     load testcase
   end
 
